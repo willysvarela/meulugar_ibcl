@@ -2,11 +2,11 @@ import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 import Button from "@material-ui/core/Button";
-
+import Typography from "@material-ui/core/Typography";
 import api from "./../../../services/api";
 
 const MAX_SELECTED_PLACES = 4;
-
+const GREEN_COLOR = "#00796b";
 const styles = {
   box: {
     width: "15%",
@@ -19,11 +19,20 @@ const styles = {
     borderRadius: "10px"
   },
   container: {},
+  palco: {
+    background: GREEN_COLOR,
+    width: "80%",
+    height: "100px",
+    margin: "auto",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    color: "#fff",
+    marginBottom: "20px"
+  },
   place: {
     border: "1px solid #ccc",
-    padding: "2px 5px",
-    display: "flex",
-    flexFlow: "row wrap"
+    padding: "2px 5px"
     /*display: "grid",
     gridTemplateColumns: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
     gridTemplateRows: "1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr",
@@ -32,6 +41,10 @@ const styles = {
     ". . . . . . . . . . ." 
     ". . . . . . . . . . ." 
     ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ." ". . . . . . . . . . ."`*/
+  },
+  place_positions: {
+    display: "flex",
+    flexFlow: "row wrap"
   }
 };
 
@@ -78,29 +91,34 @@ const EventPlacesPage = (props) => {
     <div>
       <div style={styles.container}>
         <div className="places_div" style={styles.place}>
-          {lugares.map((lugar, i) => (
-            <div
-              key={lugar.id}
-              onClick={() =>
-                lugar.status === "D"
-                  ? handleSelectPlace(lugar)
-                  : console.log("")
-              }
-              style={{
-                ...styles.box,
-                ...{
-                  backgroundColor:
-                    lugar.status === "D"
-                      ? lugar.selecionado
-                        ? "#27ae60"
-                        : "#00796b"
-                      : "#7f8c8d"
+          <div style={styles.palco}>
+            <Typography variant="h6">Palco</Typography>
+          </div>
+          <div style={styles.place_positions}>
+            {lugares.map((lugar, i) => (
+              <div
+                key={lugar.id}
+                onClick={() =>
+                  lugar.status === "D"
+                    ? handleSelectPlace(lugar)
+                    : console.log("")
                 }
-              }}
-            >
-              {lugar.posicao}
-            </div>
-          ))}
+                style={{
+                  ...styles.box,
+                  ...{
+                    backgroundColor:
+                      lugar.status === "D"
+                        ? lugar.selecionado
+                          ? "#27ae60"
+                          : GREEN_COLOR
+                        : "#7f8c8d"
+                  }
+                }}
+              >
+                {lugar.posicao}
+              </div>
+            ))}
+          </div>
         </div>
         <div
           style={{
