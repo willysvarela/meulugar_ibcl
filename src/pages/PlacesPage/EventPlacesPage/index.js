@@ -14,11 +14,11 @@ const styles = {
     padding: "10px",
     margin: "2px",
     height: "20px",
-    textAlign: "center"
+    textAlign: "center",
+    color: "#fff",
+    borderRadius: "10px"
   },
-  container: {
-    marginTop: "100px"
-  },
+  container: {},
   place: {
     border: "1px solid #ccc",
     padding: "2px 5px",
@@ -37,7 +37,6 @@ const styles = {
 
 const EventPlacesPage = (props) => {
   const [lugares, setLugares] = useState([]);
-  const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
   const params = useParams();
 
   useEffect(() => {
@@ -82,28 +81,37 @@ const EventPlacesPage = (props) => {
           {lugares.map((lugar, i) => (
             <div
               key={lugar.id}
-              onClick={() => handleSelectPlace(lugar)}
+              onClick={() =>
+                lugar.status === "D"
+                  ? handleSelectPlace(lugar)
+                  : console.log("")
+              }
               style={{
                 ...styles.box,
                 ...{
-                  backgroundColor: lugar.selecionado ? "#ffff00" : "#00796b"
+                  backgroundColor:
+                    lugar.status === "D"
+                      ? lugar.selecionado
+                        ? "#27ae60"
+                        : "#00796b"
+                      : "#7f8c8d"
                 }
               }}
             >
-              {lugar.id}
+              {lugar.posicao}
             </div>
           ))}
         </div>
         <div
           style={{
-            marginTop: "10px",
+            marginTop: "20px",
             display: "flex",
             justifyContent: "flex-end"
           }}
         >
           <Button
             color="primary"
-            variant="outlined"
+            variant="contained"
             onClick={() => handleSubmit()}
           >
             Avançar

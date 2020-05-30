@@ -1,15 +1,13 @@
 import React, { useEffect, useState } from "react";
 import api from "./../../services/api";
-import { Container, Button, AppBar } from "@material-ui/core";
+import { AppBar } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-import CardActions from "@material-ui/core/CardActions";
+
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
+
 import Typography from "@material-ui/core/Typography";
 import { useHistory } from "react-router-dom";
-
-import Title from "./../../components/Title";
 
 const EventsPage = () => {
   const [eventos, setEventos] = useState([]);
@@ -36,9 +34,10 @@ const EventsPage = () => {
   return (
     <div>
       <AppBar style={{ padding: " 20px 15px" }}>
-        <Typography variant="h6">Selecione o Culto</Typography>
+        <Typography variant="h6">Meu Lugar IBCL</Typography>
       </AppBar>
       <div style={styles.container}>
+        <Typography variant="h5">Cultos</Typography>
         {eventos.map((evento, i) => (
           <Card
             onClick={() => handleClickEvento(evento)}

@@ -1,15 +1,14 @@
 import React from "react";
-import {
-  createMuiTheme,
-  makeStyles,
-  ThemeProvider
-} from "@material-ui/core/styles";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-
+import Footer from "./components/Footer";
 import Routes from "./routes";
 
 import "./App.css";
-
+const styles = {
+  flex: { display: "flex", flexDirection: "column" },
+  footer: { marginTop: "auto" }
+};
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -31,9 +30,12 @@ function App() {
   return (
     <div>
       <ThemeProvider theme={theme}>
-        <Container>
-          <Routes />
-        </Container>
+        <div style={styles.flex}>
+          <Container style={{ marginBottom: "20px", maxWidth: "600px" }}>
+            <Routes />
+          </Container>
+          <Footer style={styles.footer} />
+        </div>
       </ThemeProvider>
     </div>
   );

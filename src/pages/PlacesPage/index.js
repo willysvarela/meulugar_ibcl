@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
@@ -7,25 +7,88 @@ import StepLabel from "@material-ui/core/StepLabel";
 
 import EventPlacesPage from "./EventPlacesPage";
 import FormNamesPage from "./FormNamesPage";
-import {
-  AppBar,
-  Typography,
-  Toolbar,
-  IconButton,
-  Button
-} from "@material-ui/core";
+import { AppBar, Typography, Toolbar, IconButton } from "@material-ui/core";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-//import SignUpPage from "./SignUpPage";
+import SignUpPage from "./SignUpPage";
+import FinalPage from "./FinalPage";
+
+import api from "./../../services/api";
+
+const STATUS_CONTEXT = [
+  "",
+  "Cadastrando no Sistema",
+  "Realizando Reservas",
+  "Finalizado"
+];
 
 const PlacesPage = (props) => {
-  const [activeStep, setActiveStep] = useState(0);
-  const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
-
+  const [activeStep, setActiveStep] = useState(3);
+  const [lugaresSelecionados, setLugaresSelecionados] = useState([
+    { posicao: 1 },
+    { posicao: 2 }
+  ]);
+  const [names, setNames] = useState([]);
+  const [user, setUser] = useState(null);
+  const [status, setStatus] = useState(3);
+  const [msgError, setMsgError] = useState("");
   const history = useHistory();
 
   const handleSubmitStep1 = (lugares) => {
-    setActiveStep((oldStep) => oldStep + 1);
     setLugaresSelecionados(lugares);
+    nextStep();
+  };
+
+  const handleSubmitStepNames = (names) => {
+    setNames(names);
+    nextStep();
+  };
+
+  const handleSubmitStepSignUp = (user) => {
+    setUser(user);
+    saveUser(user);
+    nextStep();
+  };
+
+  const saveUser = (user) => {
+    //chamar rota cadastro usuario; < Retorna o usuario cadastrado
+
+    setStatus(1);
+    api
+      .post("/pessoa", { ...user })
+      .then((res) => {
+        console.log(res.data);
+        setStatus(2);
+        makeReservation(res.data);
+      })
+      .catch((e) => {
+        setStatus(5);
+      });
+    //chamar rota de reserva.
+  };
+  const makeReservation = (userSigned) => {
+    const lugares = lugaresSelecionados.map((lugarSelecionado, i) => ({
+      id: lugarSelecionado.id,
+      nome_reservado: names[i],
+      id_pessoa: userSigned.id
+    }));
+    console.log(lugares);
+    api
+      .post("/pessoa/reservar", { lugares: lugares })
+      .then((res) => {
+        console.log(res.data);
+        setStatus(3);
+      })
+      .catch((err) => {
+        setStatus(4);
+        console.log(err, err.data);
+        setMsgError(err.response.data.message);
+      });
+  };
+  const nextStep = () => {
+    setActiveStep((oldStep) => oldStep + 1);
+  };
+  const handleBackStep = () => {
+    setActiveStep((oldStep) => oldStep - 1);
   };
 
   const styles = { container: { marginTop: "100px" } };
@@ -63,7 +126,26 @@ const PlacesPage = (props) => {
             />
           )}
           {activeStep === 1 && (
-            <FormNamesPage lugaresSelecionados={lugaresSelecionados} />
+            <FormNamesPage
+              lugaresSelecionados={lugaresSelecionados}
+              onSubmit={(names) => handleSubmitStepNames(names)}
+              onBack={() => handleBackStep()}
+            />
+          )}
+          {activeStep === 2 && (
+            <SignUpPage
+              names={names}
+              onBack={() => handleBackStep()}
+              onSubmit={(user) => handleSubmitStepSignUp(user)}
+            />
+          )}
+          {activeStep === 3 && (
+            <FinalPage
+              status={status}
+              user={user}
+              lugaresSelecionados={lugaresSelecionados}
+              error={msgError}
+            />
           )}
         </div>
       </div>
