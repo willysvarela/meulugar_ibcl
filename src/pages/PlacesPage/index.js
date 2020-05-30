@@ -22,14 +22,11 @@ const STATUS_CONTEXT = [
 ];
 
 const PlacesPage = (props) => {
-  const [activeStep, setActiveStep] = useState(3);
-  const [lugaresSelecionados, setLugaresSelecionados] = useState([
-    { posicao: 1 },
-    { posicao: 2 }
-  ]);
+  const [activeStep, setActiveStep] = useState(0);
+  const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
   const [names, setNames] = useState([]);
   const [user, setUser] = useState(null);
-  const [status, setStatus] = useState(3);
+  const [status, setStatus] = useState(0);
   const [msgError, setMsgError] = useState("");
   const history = useHistory();
 
