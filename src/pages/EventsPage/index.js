@@ -3,7 +3,6 @@ import api from "./../../services/api";
 import { AppBar } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
-
 import CardContent from "@material-ui/core/CardContent";
 
 import Typography from "@material-ui/core/Typography";
