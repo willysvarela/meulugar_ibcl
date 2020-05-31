@@ -45,6 +45,12 @@ const styles = {
   place_positions: {
     display: "flex",
     flexFlow: "row wrap"
+  },
+  flex: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    marginLeft: "10px"
   }
 };
 
@@ -92,14 +98,23 @@ const EventPlacesPage = (props) => {
       <div style={styles.container}>
         <Typography variant="subtitle1">Legenda: </Typography>
         <div style={{ display: "flex", marginBottom: "10px" }}>
-          <div style={{ ...styles.box, ...{ backgroundColor: GREEN_COLOR } }}>
-            <Typography variant="subtitle">Disponível </Typography>
+          <div style={styles.flex}>
+            <div style={{ ...styles.box, ...{ backgroundColor: GREEN_COLOR } }}>
+              1
+            </div>
+            <Typography variant="body1">Disponível </Typography>
           </div>
-          <div style={{ ...styles.box, ...{ backgroundColor: "#27ae60" } }}>
-            <Typography variant="subtitle">Selecionado </Typography>
+          <div style={styles.flex}>
+            <div style={{ ...styles.box, ...{ backgroundColor: "#27ae60" } }}>
+              1
+            </div>
+            <Typography variant="body1">Selecionado </Typography>
           </div>
-          <div style={{ ...styles.box, ...{ backgroundColor: "#7f8c8d" } }}>
-            <Typography variant="subtitle">Reservado </Typography>
+          <div style={styles.flex}>
+            <div style={{ ...styles.box, ...{ backgroundColor: "#7f8c8d" } }}>
+              1
+            </div>
+            <Typography variant="body1">Reservado </Typography>
           </div>
         </div>
         <div className="places_div" style={styles.place}>
