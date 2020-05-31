@@ -117,19 +117,21 @@ const FinalPage = (props) => {
           >
             Voltar
           </Button>
-          <Button
-            component={Link}
-            variant="contained"
-            color="primary"
-            target="_blank"
-            href={`whatsapp://send?text=Reservei lugares no Culto IBCL: ${
-              evento && evento.nome
-            }. As cadeiras reservadas foram as: ${props.lugaresSelecionados.map(
-              (lugar) => lugar.posicao + " "
-            )} `}
-          >
-            <WhatsAppIcon /> Compartilhar no WhatsApp
-          </Button>
+          {props.status === 3 && (
+            <Button
+              component={Link}
+              variant="contained"
+              color="primary"
+              target="_blank"
+              href={`whatsapp://send?text=Reservei lugares no Culto IBCL: ${
+                evento && evento.nome
+              }. As cadeiras reservadas foram as: ${props.lugaresSelecionados.map(
+                (lugar) => lugar.posicao + " "
+              )} `}
+            >
+              <WhatsAppIcon /> Compartilhar no WhatsApp
+            </Button>
+          )}
         </div>
       </Paper>
     </div>
