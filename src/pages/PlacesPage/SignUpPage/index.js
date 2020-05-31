@@ -31,7 +31,6 @@ const SignUpPage = (props) => {
   const validateFields = () => {
     if (
       fields.nome.trim() === "" ||
-      fields.email.trim() === "" ||
       fields.telefone.trim() === "" ||
       fields.idade.trim() === "" ||
       fields.categoria.trim() === ""
@@ -62,7 +61,7 @@ const SignUpPage = (props) => {
           inputProps={{ maxLength: 200 }}
           onChange={(e) => handleChangeText(e)}
         />
-        <TextField
+        {/*<TextField
           style={{ marginTop: "10px" }}
           type="mail"
           id="email"
@@ -73,7 +72,7 @@ const SignUpPage = (props) => {
           value={fields.email}
           inputProps={{ maxLength: 200 }}
           onChange={(e) => handleChangeText(e)}
-        />
+        />*/}
         <TextField
           style={{ marginTop: "10px" }}
           id="telefone"
