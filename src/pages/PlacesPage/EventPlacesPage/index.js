@@ -90,10 +90,23 @@ const EventPlacesPage = (props) => {
   return (
     <div>
       <div style={styles.container}>
+        <Typography variant="subtitle1">Legenda: </Typography>
+        <div style={{ display: "flex", marginBottom: "10px" }}>
+          <div style={{ ...styles.box, ...{ backgroundColor: GREEN_COLOR } }}>
+            <Typography variant="subtitle">Disponível </Typography>
+          </div>
+          <div style={{ ...styles.box, ...{ backgroundColor: "#27ae60" } }}>
+            <Typography variant="subtitle">Selecionado </Typography>
+          </div>
+          <div style={{ ...styles.box, ...{ backgroundColor: "#7f8c8d" } }}>
+            <Typography variant="subtitle">Reservado </Typography>
+          </div>
+        </div>
         <div className="places_div" style={styles.place}>
           <div style={styles.palco}>
             <Typography variant="h6">Palco</Typography>
           </div>
+
           <div style={styles.place_positions}>
             {lugares.map((lugar, i) => (
               <div
