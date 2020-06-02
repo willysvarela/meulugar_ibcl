@@ -16,12 +16,11 @@ const GREEN_COLOR = "#00796b";
 const styles = {
   box: {
     backgroundColor: "#fff",
-    margin: "1px",
-    padding: "6px",
-    height: "20px",
+    margin: "5px 0px",
+    padding: "5px 1px",
     textAlign: "center",
     color: "#fff",
-    borderRadius: "10px"
+    borderRadius: "10px 10px 0px 0px"
   },
   container: {},
   palco: {
@@ -49,7 +48,7 @@ const styles = {
 };
 
 const BoxLugar = ({ lugar, onSelectPlace, onDismarkPlace }) => {
-  return (
+  return lugar ? (
     <div
       key={lugar.number}
       onClick={() =>
@@ -71,8 +70,10 @@ const BoxLugar = ({ lugar, onSelectPlace, onDismarkPlace }) => {
         }
       }}
     >
-      {lugar.number}
+      <Typography variant="caption">{lugar.number}</Typography>
     </div>
+  ) : (
+    <div style={{ height: "28px", width: "10px" }}></div>
   );
 };
 
@@ -132,7 +133,7 @@ const EventPlacesPage = (props) => {
           const result = lugaresTemp.filter(
             (l) => coluna && parseInt(l.posicao) === coluna.number
           );
-          return { ...coluna, ...result[0] };
+          return result[0] && { ...coluna, ...result[0] };
         });
       });
       console.log(layout);
@@ -205,15 +206,11 @@ const EventPlacesPage = (props) => {
                     {linha.map((lugar, j) => {
                       return (
                         <td key={j}>
-                          {lugar ? (
-                            <BoxLugar
-                              lugar={lugar}
-                              onSelectPlace={() => handleSelectPlace(i, j)}
-                              onDismarkPlace={() => handleDismarkPlace(i, j)}
-                            />
-                          ) : (
-                            <div style={{ width: "5px" }}></div>
-                          )}
+                          <BoxLugar
+                            lugar={lugar}
+                            onSelectPlace={() => handleSelectPlace(i, j)}
+                            onDismarkPlace={() => handleDismarkPlace(i, j)}
+                          />
                         </td>
                       );
                     })}
