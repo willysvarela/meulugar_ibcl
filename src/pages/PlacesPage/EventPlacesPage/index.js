@@ -11,6 +11,8 @@ import BoxLegend from "./../../../components/BoxLegend";
 import api from "./../../../services/api";
 import layouts from "./layouts";
 
+import { verifyMultipleChecks } from "./functions";
+
 const MAX_SELECTED_PLACES = 4;
 const GREEN_COLOR = "#00796b";
 const styles = {
@@ -185,7 +187,11 @@ const EventPlacesPage = (props) => {
     if (selecionados.length === 0) {
       alert("Selecione pelo menos um lugar");
     } else {
-      props.onSubmit(selecionados);
+      if (verifyMultipleChecks(selecionados, layoutSelecionado)) {
+        props.onSubmit(selecionados);
+      } else {
+        alert("Cadeiras de Dupla precisam ser todas preenchidas");
+      }
     }
   };
 
