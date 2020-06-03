@@ -15,6 +15,14 @@ const SignUpPage = (props) => {
     console.log(e.target.value);
     e.persist();
   };
+  const handleChangeTelefone = (e) => {
+    const telefone = e.target.value
+      .split("")
+      .filter((n) => Number(n) || n == 0)
+      .join("");
+
+    setFields((oldState) => ({ ...oldState, telefone: telefone }));
+  };
 
   useEffect(() => {
     if (props.names.length === 1) {
@@ -82,7 +90,7 @@ const SignUpPage = (props) => {
           name="telefone"
           value={fields.telefone}
           inputProps={{ maxLength: 15 }}
-          onChange={(e) => handleChangeText(e)}
+          onChange={(e) => handleChangeTelefone(e)}
         />
         <TextField
           style={{ marginTop: "10px" }}
