@@ -191,7 +191,7 @@ const EventPlacesPage = (props) => {
         props.onSubmit(selecionados);
       } else {
         alert(
-          "Para reservar uma Cadeira de Dupla, é necessária que a outra também seja reservada"
+          "Reservamos as cadeiras em dupla para pessoas da mesma família. Para reservar uma, é necessário marcar a outra também."
         );
       }
     }

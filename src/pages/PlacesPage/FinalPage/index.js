@@ -123,7 +123,7 @@ const FinalPage = (props) => {
               variant="contained"
               color="primary"
               target="_blank"
-              href={`whatsapp://send?text=Reservei lugares no Culto IBCL: ${
+              href={`https://api.whatsapp.com/send?text=Reservei lugares no Culto IBCL: ${
                 evento && evento.nome
               }. As cadeiras reservadas foram as: ${props.lugaresSelecionados.map(
                 (lugar) => lugar.posicao + " "
