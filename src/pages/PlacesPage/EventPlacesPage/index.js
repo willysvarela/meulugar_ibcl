@@ -190,7 +190,9 @@ const EventPlacesPage = (props) => {
       if (verifyMultipleChecks(selecionados, layoutSelecionado)) {
         props.onSubmit(selecionados);
       } else {
-        alert("Cadeiras de Dupla precisam ser todas preenchidas");
+        alert(
+          "Para reservar uma Cadeira de Dupla, é necessária que a outra também seja reservada"
+        );
       }
     }
   };

@@ -4,13 +4,19 @@ import Typography from "@material-ui/core/Typography";
 const GREEN_COLOR = "#00796b";
 const styles = {
   box: {
-    backgroundColor: "#ccc",
-    padding: "10px",
-    margin: "2px",
-    height: "20px",
+    backgroundColor: "#fff",
+    margin: "5px 0px",
+    padding: "5px 1px",
     textAlign: "center",
     color: "#fff",
-    borderRadius: "10px"
+    width: "35px",
+    borderRadius: "10px 10px 0px 0px"
+  },
+  flex: {
+    display: "flex",
+    flexDirection: "column",
+    marginLeft: "10px",
+    alignItems: "center"
   }
 };
 
