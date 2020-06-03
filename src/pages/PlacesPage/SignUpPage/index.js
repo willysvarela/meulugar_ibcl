@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Typography, Container, TextField, Button } from "@material-ui/core";
+import TextMaskCustom from "./../../../components/MaskedInput";
 
 const SignUpPage = (props) => {
   const [fields, setFields] = useState({
@@ -19,7 +20,8 @@ const SignUpPage = (props) => {
     const telefone = e.target.value
       .split("")
       .filter((n) => Number(n) || n == 0)
-      .join("");
+      .join("")
+      .trim();
 
     setFields((oldState) => ({ ...oldState, telefone: telefone }));
   };
@@ -48,7 +50,12 @@ const SignUpPage = (props) => {
     } else if (fields.idade > 999) {
       alert("O campo IDADE está preenchido incorretamente");
       return false;
+    } else if (fields.telefone.length < 11) {
+      console.log(fields.telefone);
+      alert("Telefone incorreto");
+      return false;
     }
+    console.log(fields.telefone);
     return true;
   };
 
@@ -83,14 +90,17 @@ const SignUpPage = (props) => {
         />*/}
         <TextField
           style={{ marginTop: "10px" }}
-          id="telefone"
+          type="tel"
           label="Telefone"
           variant="filled"
-          fullWidth
-          name="telefone"
           value={fields.telefone}
-          inputProps={{ maxLength: 15 }}
           onChange={(e) => handleChangeTelefone(e)}
+          name="telefone"
+          fullWidth
+          id="telefone"
+          InputProps={{
+            inputComponent: TextMaskCustom
+          }}
         />
         <TextField
           style={{ marginTop: "10px" }}

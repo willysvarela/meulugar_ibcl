@@ -13,9 +13,11 @@
     "react-add-to-homescreen": "^1.1.0",
     "react-dom": "^16.13.1",
     "react-loading": "^2.0.3",
+    "react-number-format": "^4.4.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "react-seatmap": "^0.1.2"
+    "react-seatmap": "^0.1.2",
+    "react-text-mask": "^5.4.3"
   },
   "scripts": {
     "start": "react-scripts start",
