@@ -31,7 +31,7 @@ function App() {
     <div>
       <ThemeProvider theme={theme}>
         <div style={styles.flex}>
-          <Container style={{ marginBottom: "20px", maxWidth: "600px" }}>
+          <Container style={{ marginBottom: "20px", maxWidth: "1000px" }}>
             <Routes />
           </Container>
           <Footer style={styles.footer} />
