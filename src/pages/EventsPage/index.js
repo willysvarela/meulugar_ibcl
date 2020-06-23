@@ -33,7 +33,7 @@ const EventsPage = () => {
   return (
     <div>
       <AppBar style={{ padding: " 20px 15px" }}>
-        <Typography variant="h6">Meu Lugar IBCL</Typography>
+        <Typography variant="h6">Meu Lugar IBCL - Cultos</Typography>
       </AppBar>
       <div style={styles.container}>
         <Typography variant="h5">Cultos</Typography>
