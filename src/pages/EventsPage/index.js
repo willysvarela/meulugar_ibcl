@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import api from "./../../services/api";
-import { AppBar } from "@material-ui/core";
-import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
-import CardContent from "@material-ui/core/CardContent";
+import React, { useEffect, useState } from 'react';
+import { AppBar } from '@material-ui/core';
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardContent from '@material-ui/core/CardContent';
 
-import Typography from "@material-ui/core/Typography";
-import { useHistory } from "react-router-dom";
+import Typography from '@material-ui/core/Typography';
+import { useHistory } from 'react-router-dom';
+import api from '../../services/api';
 
 const EventsPage = () => {
   const [eventos, setEventos] = useState([]);
   const history = useHistory();
 
   useEffect(() => {
-    api.get("/evento/disponivel").then((res) => {
+    api.get('/evento/disponivel').then((res) => {
       setEventos(res.data);
     });
   }, []);
@@ -24,36 +24,36 @@ const EventsPage = () => {
 
   const styles = {
     card: {
-      marginTop: "10px"
+      marginTop: '10px',
     },
     container: {
-      marginTop: "100px"
-    }
+      marginTop: '100px',
+    },
   };
   return (
     <div>
-      <AppBar style={{ padding: " 20px 15px" }}>
+      <AppBar style={{ padding: ' 20px 15px' }}>
         <Typography variant="h6">Meu Lugar IBCL - Cultos</Typography>
-      </AppBar>
-      <div style={styles.container}>
-        <Typography variant="h5">Cultos</Typography>
+        </AppBar>
+          <div style={styles.container}>
+          <Typography variant="h5">Cultos</Typography>
         {eventos.map((evento, i) => (
           <Card
-            onClick={() => handleClickEvento(evento)}
-            key={i}
-            style={styles.card}
-          >
-            <CardActionArea>
+              onClick={() => handleClickEvento(evento)}
+              key={i}
+              style={styles.card}
+            >
+                <CardActionArea>
               <CardContent>
-                <Typography gutterBottom variant="h5" component="h2">
+                        <Typography gutterBottom variant="h5" component="h2">
                   {evento.nome}
-                </Typography>
-              </CardContent>
+                  </Typography>
+                    </CardContent>
             </CardActionArea>
-          </Card>
+            </Card>
         ))}
       </div>
-    </div>
+      </div>
   );
 };
 

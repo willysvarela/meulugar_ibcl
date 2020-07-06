@@ -1,40 +1,40 @@
-import React from "react";
-import PropTypes from "prop-types";
-import MaskedInput from "react-text-mask";
-import NumberFormat from "react-number-format";
+import React from 'react';
+import PropTypes from 'prop-types';
+import MaskedInput from 'react-text-mask';
+import NumberFormat from 'react-number-format';
 
 function TextMaskCustom(props) {
   const { inputRef, ...other } = props;
 
   return (
     <MaskedInput
-      {...other}
-      ref={(ref) => {
+        {...other}
+        ref={(ref) => {
         inputRef(ref ? ref.inputElement : null);
       }}
-      mask={[
-        "(",
+        mask={[
+        '(',
         /[1-9]/,
         /\d/,
-        ")",
+        ')',
         /\d/,
         /\d/,
         /\d/,
         /\d/,
         /\d/,
-        "-",
+        '-',
         /\d/,
         /\d/,
         /\d/,
-        /\d/
+        /\d/,
       ]}
-      placeholderChar={"\u2000"}
-    />
+        placeholderChar={'\u2000'}
+      />
   );
 }
 
 TextMaskCustom.propTypes = {
-  inputRef: PropTypes.func.isRequired
+  inputRef: PropTypes.func.isRequired,
 };
 
 function NumberFormatCustom(props) {
@@ -42,27 +42,27 @@ function NumberFormatCustom(props) {
 
   return (
     <NumberFormat
-      {...other}
-      getInputRef={inputRef}
-      onValueChange={(values) => {
+        {...other}
+        getInputRef={inputRef}
+        onValueChange={(values) => {
         onChange({
           target: {
             name: props.name,
-            value: values.value
-          }
+            value: values.value,
+          },
         });
       }}
-      thousandSeparator
-      isNumericString
-      prefix="$"
-    />
+        thousandSeparator
+        isNumericString
+        prefix="$"
+      />
   );
 }
 
 NumberFormatCustom.propTypes = {
   inputRef: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired
+  onChange: PropTypes.func.isRequired,
 };
 
 export default TextMaskCustom;

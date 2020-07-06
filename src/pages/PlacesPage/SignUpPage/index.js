@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { Typography, Container, TextField, Button } from "@material-ui/core";
-import TextMaskCustom from "./../../../components/MaskedInput";
+import React, { useState, useEffect } from 'react';
+import { Typography, Container, TextField, Button } from '@material-ui/core';
+import TextMaskCustom from '../../../components/MaskedInput';
 
 const SignUpPage = (props) => {
   const [fields, setFields] = useState({
-    nome: "",
-    email: "",
-    telefone: "",
-    idade: "",
-    categoria: "Individual"
+    nome: '',
+    email: '',
+    telefone: '',
+    idade: '',
+    categoria: 'Individual',
   });
 
   const handleChangeText = (e) => {
@@ -18,12 +18,12 @@ const SignUpPage = (props) => {
   };
   const handleChangeTelefone = (e) => {
     const telefone = e.target.value
-      .split("")
+      .split('')
       .filter((n) => Number(n) || n == 0)
-      .join("")
+      .join('')
       .trim();
 
-    setFields((oldState) => ({ ...oldState, telefone: telefone }));
+    setFields((oldState) => ({ ...oldState, telefone }));
   };
 
   useEffect(() => {
@@ -40,19 +40,21 @@ const SignUpPage = (props) => {
 
   const validateFields = () => {
     if (
-      fields.nome.trim() === "" ||
-      fields.telefone.trim() === "" ||
-      fields.idade.trim() === "" ||
-      fields.categoria.trim() === ""
+      fields.nome.trim() === '' ||
+      fields.telefone.trim() === '' ||
+      fields.idade.trim() === '' ||
+      fields.categoria.trim() === ''
     ) {
-      alert("Você precisa preencher todos os campos corretamente");
+      alert('Você precisa preencher todos os campos corretamente');
       return false;
-    } else if (fields.idade > 999) {
-      alert("O campo IDADE está preenchido incorretamente");
+    }
+    if (fields.idade > 999) {
+      alert('O campo IDADE está preenchido incorretamente');
       return false;
-    } else if (fields.telefone.length < 11) {
+    }
+    if (fields.telefone.length < 11) {
       console.log(fields.telefone);
-      alert("Telefone incorreto");
+      alert('Telefone incorreto');
       return false;
     }
     console.log(fields.telefone);
@@ -62,21 +64,21 @@ const SignUpPage = (props) => {
   return (
     <div>
       <Typography variant="h5">
-        Para confirmar a sua reserva, preencha os dados abaixo:
+            Para confirmar a sua reserva, preencha os dados abaixo:
       </Typography>
-      <div>
+          <div>
         <TextField
-          style={{ marginTop: "10px" }}
-          id="nome"
-          label="Nome"
-          variant="filled"
-          fullWidth
-          name="nome"
-          value={fields.nome}
-          inputProps={{ maxLength: 200 }}
-          onChange={(e) => handleChangeText(e)}
-        />
-        {/*<TextField
+                style={{ marginTop: '10px' }}
+                id="nome"
+                label="Nome"
+                variant="filled"
+                fullWidth
+                name="nome"
+                value={fields.nome}
+                inputProps={{ maxLength: 200 }}
+                onChange={(e) => handleChangeText(e)}
+              />
+            {/* <TextField
           style={{ marginTop: "10px" }}
           type="mail"
           id="email"
@@ -87,23 +89,23 @@ const SignUpPage = (props) => {
           value={fields.email}
           inputProps={{ maxLength: 200 }}
           onChange={(e) => handleChangeText(e)}
-        />*/}
-        <TextField
-          style={{ marginTop: "10px" }}
-          type="tel"
-          label="Telefone"
+        /> */}
+            <TextField
+                style={{ marginTop: '10px' }}
+                type="tel"
+                label="Telefone"
           variant="filled"
           value={fields.telefone}
-          onChange={(e) => handleChangeTelefone(e)}
-          name="telefone"
-          fullWidth
-          id="telefone"
+                onChange={(e) => handleChangeTelefone(e)}
+                name="telefone"
+                fullWidth
+                id="telefone"
           InputProps={{
-            inputComponent: TextMaskCustom
+            inputComponent: TextMaskCustom,
           }}
-        />
-        <TextField
-          style={{ marginTop: "10px" }}
+              />
+            <TextField
+          style={{ marginTop: '10px' }}
           type="number"
           id="idade"
           label="Idade"
@@ -114,26 +116,26 @@ const SignUpPage = (props) => {
           inputProps={{ max: 3 }}
           onChange={(e) => handleChangeText(e)}
         />
-        <div
+            <div
           style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            marginTop: "20px"
+            display: 'flex',
+            justifyContent: 'flex-end',
+            marginTop: '20px',
           }}
         >
           <Button color="primary" onClick={() => props.onBack()}>
-            Voltar
+                    Voltar
           </Button>
           <Button
-            color="primary"
-            variant="contained"
-            onClick={() => handleSubmit()}
-          >
+                  color="primary"
+                  variant="contained"
+                  onClick={() => handleSubmit()}
+                >
             Finalizar
-          </Button>
+                </Button>
         </div>
       </div>
-    </div>
+      </div>
   );
 };
 

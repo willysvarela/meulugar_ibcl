@@ -1,28 +1,28 @@
-import React from "react";
-import { Switch, BrowserRouter, Route } from "react-router-dom";
-import EventsPage from "./../pages/EventsPage";
-import PlacesPage from "./../pages/PlacesPage";
-import ReservationPage from "./../pages/Admin/ReservationPage";
-import ReservationDetailPage from "./../pages/Admin/ReservationDetailPage";
+import React from 'react';
+import { Switch, BrowserRouter, Route } from 'react-router-dom';
+import EventsPage from '../pages/EventsPage';
+import PlacesPage from '../pages/PlacesPage';
+import ReservationPage from '../pages/Admin/ReservationPage';
+import ReservationDetailPage from '../pages/Admin/ReservationDetailPage';
 
 const Routes = () => {
   return (
     <BrowserRouter>
-      <Switch>
+          <Switch>
         <Route exact path="/">
           <EventsPage />
-        </Route>
+              </Route>
         <Route exact path="/culto/:id">
-          <PlacesPage />
+                  <PlacesPage />
         </Route>
-        <Route exact path="/reservas">
-          <ReservationPage />
+            <Route exact path="/reservas">
+            <ReservationPage />
         </Route>
         <Route exact path="/reservas/:id">
           <ReservationDetailPage />
-        </Route>
+              </Route>
       </Switch>
-    </BrowserRouter>
+      </BrowserRouter>
   );
 };
 export default Routes;
