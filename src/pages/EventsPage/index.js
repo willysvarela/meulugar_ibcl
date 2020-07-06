@@ -32,11 +32,11 @@ const EventsPage = () => {
   };
   return (
     <div>
-      <AppBar style={{ padding: ' 20px 15px' }}>
-        <Typography variant="h6">Meu Lugar IBCL - Cultos</Typography>
-        </AppBar>
-          <div style={styles.container}>
-          <Typography variant="h5">Cultos</Typography>
+      <AppBar style={{ padding: " 20px 15px" }}>
+        <Typography variant="h6">Meu Lugar IBCL</Typography>
+      </AppBar>
+      <div style={styles.container}>
+        <Typography variant="h4">Escolha o seu culto</Typography>
         {eventos.map((evento, i) => (
           <Card
               onClick={() => handleClickEvento(evento)}
