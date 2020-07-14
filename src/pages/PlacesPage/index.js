@@ -14,13 +14,6 @@ import FinalPage from './FinalPage';
 
 import api from '../../services/api';
 
-const STATUS_CONTEXT = [
-  '',
-  'Cadastrando no Sistema',
-  'Realizando Reservas',
-  'Finalizado',
-];
-
 const PlacesPage = (props) => {
   const [activeStep, setActiveStep] = useState(0);
   const [lugaresSelecionados, setLugaresSelecionados] = useState([]);

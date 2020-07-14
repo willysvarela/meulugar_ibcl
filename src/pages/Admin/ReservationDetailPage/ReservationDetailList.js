@@ -1,6 +1,4 @@
-import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
-import AppBar from '@material-ui/core/AppBar';
+import React, { useState, useEffect } from 'react'; 
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import Button from '@material-ui/core/Button';
@@ -13,7 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/Search';
 
-import { useHistory, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import api from '../../../services/api';
 
 const styles = {
@@ -31,8 +29,7 @@ const styles = {
     flexWrap: 'wrap',
   },
 };
-const ReservationDetailList = (props) => {
-  const history = useHistory();
+const ReservationDetailList = (props) => { 
   const params = useParams();
   const [pessoas, setPessoas] = useState([]);
   const [pessoasFiltradas, setPessoasFiltradas] = useState([]);
@@ -49,9 +46,7 @@ const ReservationDetailList = (props) => {
     };
   }, [params.id]);
 
-  const handleClickBack = () => {
-    history.goBack();
-  };
+
 
   useEffect(() => {
     const filtro = pessoas.filter((pessoa) =>

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, Container, TextField, Button } from '@material-ui/core';
+import { Typography, TextField, Button } from '@material-ui/core';
 import TextMaskCustom from '../../../components/MaskedInput';
 
 const SignUpPage = (props) => {
@@ -19,7 +19,7 @@ const SignUpPage = (props) => {
   const handleChangeTelefone = (e) => {
     const telefone = e.target.value
       .split('')
-      .filter((n) => Number(n) || n == 0)
+      .filter((n) => Number(n) || n === 0)
       .join('')
       .trim();
 
