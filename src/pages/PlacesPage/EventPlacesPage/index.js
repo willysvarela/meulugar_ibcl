@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
+import Typography from '@material-ui/core/Typography'; 
 
 import BoxLegend from '../../../components/BoxLegend';
 
@@ -78,46 +76,7 @@ const BoxLugar = ({ lugar, onSelectPlace, onDismarkPlace }) => {
   );
 };
 
-const Vazio = (props) => {
-  return <div style={{ width: '8px' }} />;
-};
-
-const Camera = (props) => {
-  return (
-      <div>
-        <VideocamIcon />
-    </div>
-  );
-};
-
-const Porta = (props) => (
-    <div>
-      <MeetingRoomIcon />
-  </div>
-);
-
-const LugarWrapper = ({ tipoLugar, lugar, onSelectPlace }) => {
-  switch (tipoLugar) {
-    case 0:
-      return <Vazio />;
-    case 1:
-      return (
-          <BoxLugar
-          lugar={{ posicao: 1, status: 'D' }}
-          onSelect={(tipoLugar) => onSelectPlace(tipoLugar)}
-        />
-      );
-    case 2:
-      return <Camera />;
-    case 3:
-      return <Porta />;
-    default:
-      return <></>;
-  }
-};
-
 const EventPlacesPage = (props) => {
-  const [lugares, setLugares] = useState([]);
   const [layoutSelecionado, setLayoutSelecionado] = useState([]);
   const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
   const params = useParams();
@@ -137,8 +96,7 @@ const EventPlacesPage = (props) => {
           return result[0] && { ...coluna, ...result[0] };
         });
       });
-      console.log(layout);
-      setLugares(resLugares);
+      console.log(layout); 
       setLayoutSelecionado(layout);
     });
   }, [params.id]);

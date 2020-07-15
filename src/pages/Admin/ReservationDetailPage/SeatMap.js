@@ -1,19 +1,12 @@
+import PropTypes from "prop-types";
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-
-import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
-import VideocamIcon from '@material-ui/icons/Videocam';
-import MeetingRoomIcon from '@material-ui/icons/MeetingRoom';
-
-import BoxLegend from '../../../components/BoxLegend';
+ 
+import Typography from '@material-ui/core/Typography'; 
 
 import api from '../../../services/api';
 import layouts from './layouts';
 
-import { verifyMultipleChecks } from './functions';
-
-const MAX_SELECTED_PLACES = 4;
 const GREEN_COLOR = '#00796b';
 const styles = {
   box: {
@@ -82,48 +75,18 @@ const BoxLugar = ({ lugar }) => {
   );
 };
 
-const Vazio = (props) => {
-  return <div style={{ width: '8px' }} />;
-};
+BoxLugar.propTypes = {
+  lugar: PropTypes.shape({
+    nome_reservado: PropTypes.any,
+    number: PropTypes.any,
+    selecionado: PropTypes.any,
+    status: PropTypes.string
+  })
+}
 
-const Camera = (props) => {
-  return (
-    <div>
-          <VideocamIcon />
-      </div>
-  );
-};
 
-const Porta = (props) => (
-  <div>
-        <MeetingRoomIcon />
-    </div>
-);
-
-const LugarWrapper = ({ tipoLugar, lugar, onSelectPlace }) => {
-  switch (tipoLugar) {
-    case 0:
-      return <Vazio />;
-    case 1:
-      return (
-        <BoxLugar
-            lugar={{ posicao: 1, status: 'D' }}
-            onSelect={(tipoLugar) => onSelectPlace(tipoLugar)}
-          />
-      );
-    case 2:
-      return <Camera />;
-    case 3:
-      return <Porta />;
-    default:
-      return <></>;
-  }
-};
-
-const SeatMap = (props) => {
-  const [lugares, setLugares] = useState([]);
-  const [layoutSelecionado, setLayoutSelecionado] = useState([]);
-  const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
+const SeatMap = (props) => { 
+  const [layoutSelecionado, setLayoutSelecionado] = useState([]); 
   const params = useParams();
 
   useEffect(() => {
@@ -141,8 +104,7 @@ const SeatMap = (props) => {
           return result[0] && { ...coluna, ...result[0] };
         });
       });
-      console.log(layout);
-      setLugares(resLugares);
+      console.log(layout); 
       setLayoutSelecionado(layout);
     });
   }, [params.id]);
@@ -150,51 +112,6 @@ const SeatMap = (props) => {
   /* useEffect(() => {
     console.log(layoutSelecionado);
   }, [layoutSelecionado]); */
-
-  const handleSelectPlace = (linha, coluna) => {
-    if (lugaresSelecionados.length + 1 > MAX_SELECTED_PLACES) {
-      alert(`Você não pode selecionar mais de ${MAX_SELECTED_PLACES} lugares`);
-    } else {
-      const novoLayout = [...layoutSelecionado];
-      const item = novoLayout[linha][coluna];
-      novoLayout[linha][coluna].selecionado = true;
-
-      const novoSelecionados = [...lugaresSelecionados];
-      novoSelecionados.push(item);
-      console.log(novoSelecionados);
-
-      setLayoutSelecionado(novoLayout);
-      setLugaresSelecionados(novoSelecionados);
-    }
-  };
-
-  const handleDismarkPlace = (linha, coluna) => {
-    const novoLayout = [...layoutSelecionado];
-    const item = novoLayout[linha][coluna];
-    novoLayout[linha][coluna].selecionado = false;
-
-    console.log('lugares', lugaresSelecionados);
-    console.log('item', item);
-    const novoSelecionados = [...lugaresSelecionados].filter(
-      (lugar) => lugar.number !== item.number
-    );
-    console.log('filtrado', novoSelecionados);
-    setLayoutSelecionado(novoLayout);
-    setLugaresSelecionados(novoSelecionados);
-  };
-
-  const handleSubmit = () => {
-    const selecionados = lugaresSelecionados;
-    if (selecionados.length === 0) {
-      alert('Selecione pelo menos um lugar');
-    } else if (verifyMultipleChecks(selecionados, layoutSelecionado)) {
-      props.onSubmit(selecionados);
-    } else {
-      alert(
-        'Reservamos as cadeiras em dupla para pessoas da mesma família. Para reservar uma, é necessário marcar a outra também.'
-      );
-    }
-  };
 
   return (
     <div>

@@ -60,7 +60,6 @@ const ReservationDetailPage = (props) => {
       </div>
   );
 };
-
-ReservationDetailPage.propTypes = {};
+ 
 
 export default ReservationDetailPage;

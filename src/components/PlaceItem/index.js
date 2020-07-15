@@ -19,6 +19,8 @@ const PlaceItem = (props) => {
   );
 };
 
-PlaceItem.propTypes = {};
+PlaceItem.propTypes = {
+  posicao: PropTypes.any
+};
 
 export default PlaceItem;
