@@ -13,15 +13,17 @@ const SignUpPage = (props) => {
 
   const handleChangeText = (e) => {
     setFields((oldState) => ({ ...oldState, [e.target.name]: e.target.value }));
-    console.log(e.target.value);
+    
     e.persist();
   };
   const handleChangeTelefone = (e) => {
+    console.log('phone', e.target.value);
     const telefone = e.target.value
       .split('')
-      .filter((n) => Number(n) || n === 0)
+      .filter(n => {console.log('n', n); return Number(n) || n == 0})
       .join('')
       .trim();
+      console.log('phone2', telefone);
 
     setFields((oldState) => ({ ...oldState, telefone }));
   };

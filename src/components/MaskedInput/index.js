@@ -14,7 +14,7 @@ function TextMaskCustom(props) {
       }}
         mask={[
         '(',
-        /[1-9]/,
+        /[0-9]/,
         /\d/,
         ')',
         /\d/,
