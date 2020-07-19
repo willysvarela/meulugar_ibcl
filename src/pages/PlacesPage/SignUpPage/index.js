@@ -18,9 +18,13 @@ const SignUpPage = (props) => {
   };
   const handleChangeTelefone = (e) => {
     console.log('phone', e.target.value);
+    
     const telefone = e.target.value
       .split('')
-      .filter(n => {console.log('n', n); return Number(n) || n == 0})
+      .filter(n => {
+        // eslint-disable-next-line
+        return Number(n) || n == 0
+      })
       .join('')
       .trim();
       console.log('phone2', telefone);
