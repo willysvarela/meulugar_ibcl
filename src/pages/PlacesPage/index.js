@@ -97,7 +97,7 @@ const PlacesPage = (props) => {
               <Typography variant="h6">Escolha os lugares</Typography>
           </Toolbar>
         </AppBar>
-          <div style={styles.container}>
+        <div style={styles.container}>
         <Stepper activeStep={activeStep} alternativeLabel>
           <Step>
                   <StepLabel>Seleção de Lugares</StepLabel>
