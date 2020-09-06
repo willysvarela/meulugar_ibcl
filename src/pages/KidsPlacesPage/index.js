@@ -16,25 +16,21 @@ import api from '../../services/api';
 
 const PlacesPage = (props) => {
   const [activeStep, setActiveStep] = useState(0);
-  const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
+  //const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
   const [names, setNames] = useState([]);
   const [user, setUser] = useState(null);
   const [status, setStatus] = useState(0);
   const [msgError, setMsgError] = useState('');
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const history = useHistory();
+
   const params = useParams();
-  
+
   useEffect(() => {
     api.get(`/lugar/evento/${params.id}`).then((res) => {
       setEventoSelecionado(res.data.evento);
     });
   }, [params]);
-
-  const handleSubmitStep1 = (lugares) => {
-    setLugaresSelecionados(lugares);
-    nextStep();
-  };
 
   const handleSubmitStepNames = (names) => {
     setNames(names);
@@ -48,8 +44,6 @@ const PlacesPage = (props) => {
   };
 
   const saveUser = (user) => {
-    // chamar rota cadastro usuario; < Retorna o usuario cadastrado
-
     setStatus(1);
     api
       .post('/pessoa', { ...user })
@@ -63,15 +57,17 @@ const PlacesPage = (props) => {
       });
     // chamar rota de reserva.
   };
+
   const makeReservation = (userSigned) => {
-    const lugares = lugaresSelecionados.map((lugarSelecionado, i) => ({
-      id: lugarSelecionado.id,
-      nome_reservado: names[i],
+    const lugares = names.map((name, i) => ({
+      nome_reservado: name,
       id_pessoa: userSigned.id,
+      id_evento: parseInt(params.id),
     }));
-    console.log(lugares);
+    console.log({ lugares });
+
     api
-      .post('/pessoa/reservar', { lugares })
+      .post('/kids/reservar', { lugares })
       .then((res) => {
         console.log(res.data);
         setStatus(3);
@@ -103,47 +99,35 @@ const PlacesPage = (props) => {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="h6">
-            {eventoSelecionado && eventoSelecionado.nome} - Escolha os lugares
+            {eventoSelecionado && eventoSelecionado.nome} - Reserva de Lugar
           </Typography>
         </Toolbar>
       </AppBar>
       <div style={styles.container}>
         <Stepper activeStep={activeStep} alternativeLabel>
           <Step>
-            <StepLabel>Seleção de Lugares</StepLabel>
+            <StepLabel>Nomes das Crianças</StepLabel>
           </Step>
           <Step>
-            <StepLabel>Marcação de Nomes</StepLabel>
-          </Step>
-          <Step>
-            <StepLabel>Finalização de Cadastro</StepLabel>
+            <StepLabel>Finalização de Reserva</StepLabel>
           </Step>
         </Stepper>
         <div>
           {activeStep === 0 && (
-            <EventPlacesPage
-              onSubmit={(lugares) => handleSubmitStep1(lugares)}
-            />
+            <FormNamesPage onSubmit={(names) => handleSubmitStepNames(names)} />
           )}
           {activeStep === 1 && (
-            <FormNamesPage
-              lugaresSelecionados={lugaresSelecionados}
-              onSubmit={(names) => handleSubmitStepNames(names)}
-              onBack={() => handleBackStep()}
-            />
-          )}
-          {activeStep === 2 && (
             <SignUpPage
               names={names}
               onBack={() => handleBackStep()}
               onSubmit={(user) => handleSubmitStepSignUp(user)}
             />
           )}
-          {activeStep === 3 && (
+          {activeStep === 2 && (
             <FinalPage
               status={status}
               user={user}
-              lugaresSelecionados={lugaresSelecionados}
+              names={names}
               error={msgError}
             />
           )}
