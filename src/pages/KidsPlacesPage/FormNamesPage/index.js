@@ -37,6 +37,20 @@ const FormNamesPage = (props) => {
     return quantidadeCriancas>1 && 's'
   }
 
+  const handleChangeQuantidade = (value) => {
+    const quantidade = value !== "" || value > 0 ? value : 1;
+
+    console.log({quantidade});
+    if(quantidade > 5){
+      alert('A quantidade máxima de crianças é 5');
+    }else if(isNaN(quantidade)) {
+      setQuantidadeCriancas(1);
+    }
+    else{
+      setQuantidadeCriancas(quantidade);
+    }
+  }
+
   return (
     <div>
       <div>
@@ -52,7 +66,7 @@ const FormNamesPage = (props) => {
           inputProps={{ min: 1, max: 5}}
           variant="filled"
           value={quantidadeCriancas}
-          onChange={(e) => setQuantidadeCriancas(parseInt(e.target.value))}
+          onChange={(e) =>handleChangeQuantidade(parseInt(e.target.value))}
         />
       </div>
       <div style={{height: "50px"}} />
