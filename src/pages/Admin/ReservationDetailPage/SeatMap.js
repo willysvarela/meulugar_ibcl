@@ -5,7 +5,7 @@ import { useParams } from 'react-router-dom';
 import Typography from '@material-ui/core/Typography'; 
 
 import api from '../../../services/api';
-import layouts from './layouts';
+import layouts from './../../../config/layouts';
 
 const GREEN_COLOR = '#00796b';
 const styles = {
@@ -95,7 +95,7 @@ const SeatMap = (props) => {
       let layout = layouts[tipoEvento];
       const resLugares = res.data.lugares;
       const lugaresTemp = resLugares;
-
+try{
       layout = layout.map((linha) => {
         return linha.map((coluna) => {
           const result = lugaresTemp.filter(
@@ -106,6 +106,9 @@ const SeatMap = (props) => {
       });
       console.log(layout); 
       setLayoutSelecionado(layout);
+    }catch(e){
+      console.log("Sem Cadeiras" + e.message);
+    }
     });
   }, [params.id]);
 

@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import BoxLegend from '../../../components/BoxLegend';
 
 import api from '../../../services/api';
-import layouts from './../../../config/layouts';
+import layouts from './layouts';
 
 import { verifyMultipleChecks } from './functions';
 
@@ -79,17 +79,15 @@ const BoxLugar = ({ lugar, onSelectPlace, onDismarkPlace }) => {
 const EventPlacesPage = (props) => {
   const [layoutSelecionado, setLayoutSelecionado] = useState([]);
   const [lugaresSelecionados, setLugaresSelecionados] = useState([]);
-  const [evento, setEvento] = useState(null);
   const params = useParams();
 
   useEffect(() => {
     api.get(`/lugar/evento/${params.id}`).then((res) => {
-      
       const tipoEvento = res.data.evento.tipo;
       let layout = layouts[tipoEvento];
       const resLugares = res.data.lugares;
       const lugaresTemp = resLugares;
-      try{
+
       layout = layout.map((linha) => {
         return linha.map((coluna) => {
           const result = lugaresTemp.filter(
@@ -100,10 +98,6 @@ const EventPlacesPage = (props) => {
       });
       console.log(layout); 
       setLayoutSelecionado(layout);
-    }
-      catch(e){
-        console.log("sem cadeiras neste evento");
-      }
     });
   }, [params.id]);
 

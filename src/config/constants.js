@@ -1,0 +1,1 @@
+export const TIPO_EVENTO = {FAMILIA: 'familia', JOVEM: 'jovem', KIDS: 'kids'};
