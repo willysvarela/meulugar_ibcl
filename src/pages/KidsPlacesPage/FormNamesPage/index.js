@@ -41,8 +41,8 @@ const FormNamesPage = (props) => {
     const quantidade = value !== "" || value > 0 ? value : 1;
 
     console.log({quantidade});
-    if(quantidade > 5){
-      alert('A quantidade máxima de crianças é 5');
+    if(quantidade > 100){
+      setQuantidadeCriancas(1);
     }else if(isNaN(quantidade)) {
       setQuantidadeCriancas(1);
     }
