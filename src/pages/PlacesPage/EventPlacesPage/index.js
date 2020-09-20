@@ -147,13 +147,15 @@ const EventPlacesPage = (props) => {
     const selecionados = lugaresSelecionados;
     if (selecionados.length === 0) {
       alert('Selecione pelo menos um lugar');
-    } else if (verifyMultipleChecks(selecionados, layoutSelecionado)) {
+    } else{ 
+      props.onSubmit(selecionados); 
+    } /*else if (verifyMultipleChecks(selecionados, layoutSelecionado)) {
       props.onSubmit(selecionados);
     } else {
       alert(
         'Reservamos as cadeiras em dupla para pessoas da mesma família. Para reservar uma, é necessário marcar a outra também.'
       );
-    }
+    }*/
   };
 
   return (
