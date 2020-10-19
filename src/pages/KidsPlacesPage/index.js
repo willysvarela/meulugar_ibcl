@@ -13,6 +13,7 @@ import SignUpPage from './SignUpPage';
 import FinalPage from './FinalPage';
 
 import api from '../../services/api';
+import { formatDateTime } from './../../services/utils';
 
 const PlacesPage = (props) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -67,7 +68,7 @@ const PlacesPage = (props) => {
     console.log({ lugares });
 
     api
-      .post('/kids/reservar', { lugares })
+      .post('/dept/reservar', { lugares })
       .then((res) => {
         console.log(res.data);
         setStatus(3);
@@ -99,14 +100,17 @@ const PlacesPage = (props) => {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="h6">
-            {eventoSelecionado && eventoSelecionado.nome} - Reserva de Lugar
+            {eventoSelecionado &&
+              `${eventoSelecionado.nome} - ${formatDateTime(
+                eventoSelecionado.data_evento
+              )}`}
           </Typography>
         </Toolbar>
       </AppBar>
       <div style={styles.container}>
         <Stepper activeStep={activeStep} alternativeLabel>
           <Step>
-            <StepLabel>Nomes das Crianças</StepLabel>
+            <StepLabel>Nomes das Pessoas</StepLabel>
           </Step>
           <Step>
             <StepLabel>Finalização de Reserva</StepLabel>

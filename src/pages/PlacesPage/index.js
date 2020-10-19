@@ -13,6 +13,7 @@ import SignUpPage from './SignUpPage';
 import FinalPage from './FinalPage';
 
 import api from '../../services/api';
+import { formatDateTime } from '../../services/utils';
 
 const PlacesPage = (props) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -24,12 +25,16 @@ const PlacesPage = (props) => {
   const [eventoSelecionado, setEventoSelecionado] = useState(null);
   const history = useHistory();
   const params = useParams();
-  
+
   useEffect(() => {
     api.get(`/lugar/evento/${params.id}`).then((res) => {
       setEventoSelecionado(res.data.evento);
     });
   }, [params]);
+
+  useEffect(() => {
+    console.log({eventoSelecionado});
+  }, [eventoSelecionado]);
 
   const handleSubmitStep1 = (lugares) => {
     setLugaresSelecionados(lugares);
@@ -103,7 +108,7 @@ const PlacesPage = (props) => {
             <ChevronLeftIcon />
           </IconButton>
           <Typography variant="h6">
-            {eventoSelecionado && eventoSelecionado.nome} - Escolha os lugares
+            {eventoSelecionado && `${eventoSelecionado.nome} - ${formatDateTime(eventoSelecionado.data_evento)}`}
           </Typography>
         </Toolbar>
       </AppBar>

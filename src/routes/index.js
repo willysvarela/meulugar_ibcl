@@ -16,7 +16,7 @@ const Routes = () => {
         <Route exact path="/culto/:id">
           <PlacesPage />
         </Route>
-        <Route exact path="/kids/:id">
+        <Route exact path="/dept/:id">
           <KidsPlacesPage />
         </Route>
             <Route exact path="/reservas">

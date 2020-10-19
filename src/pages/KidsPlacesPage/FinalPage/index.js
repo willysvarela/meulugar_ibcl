@@ -77,7 +77,7 @@ const FinalPage = (props) => {
               width="200"
               alt={`falha na reserva de cadeiras porque ${props.error}`}
             />
-            <Typography variant="subtitle1">Não foi possível realizar a reserva da salinha. Por favor, tente novamente.</Typography>
+            <Typography variant="subtitle1">Não foi possível realizar a reserva. Por favor, tente novamente.</Typography>
             <Typography variant="subtitle1">{props.error}</Typography>
             </div>
         ) : (
@@ -90,14 +90,14 @@ const FinalPage = (props) => {
             <Typography variant="h5">
                   Parabéns {props.user && props.user.nome}
               </Typography>
-                <Typography variant="h6">Crianças com Reserva na Salinha:</Typography>
+                <Typography variant="h6">Reservas feitas para as pessoas:</Typography>
                 <div style={{ display: 'flex', justifyContent: 'center' }}>
               {props.names.map((name, i) => (
                         <Typography variant="h6" key={i}>{name} </Typography>
               ))}
             </div>
             <Typography variant="body1">
-                  Para a Salinha: {evento && evento.nome}
+                  Para o Evento: {evento && evento.nome}
               </Typography>
                 <Typography variant="subtitle1">
                 Data: {renderDate(evento)}
@@ -119,7 +119,7 @@ const FinalPage = (props) => {
               variant="contained"
               color="primary"
               target="_blank"
-              href={`https://api.whatsapp.com/send?text=Reservei lugares para as crianças nos KIDS: ${
+              href={`https://api.whatsapp.com/send?text=Reservei lugares para as pessoas no evento: ${
                 evento && evento.nome
               }. As crianças são: ${props.names.map(
                 (name) => `${name} `
