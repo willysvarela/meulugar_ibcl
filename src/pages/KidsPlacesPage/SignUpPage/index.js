@@ -64,7 +64,7 @@ const SignUpPage = (props) => {
   return (
     <div>
       <Typography variant="h5">
-        Dados do Responsável, CONFORME RESERVADO NO CULTO:
+        Responsável pela reserva:
       </Typography>
       <div>
         <TextField
