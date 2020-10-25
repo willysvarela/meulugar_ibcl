@@ -91,7 +91,7 @@ const SeatMap = (props) => {
 
   useEffect(() => {
     api.get(`/lugar/evento/${params.id}`).then((res) => {
-      const tipoEvento = res.data.evento.tipo;
+      const tipoEvento = res.data.evento.tipoLayout;
       let layout = layouts[tipoEvento];
       const resLugares = res.data.lugares;
       const lugaresTemp = resLugares;
