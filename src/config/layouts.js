@@ -1,3 +1,4 @@
+//103 cadeiras
 const layout1 = [
     [
       { status: 'D', number: 1 },
@@ -181,6 +182,20 @@ const layout1 = [
       null,
       { status: 'D', number: 96 },
     ],
+    [
+      { status: 'D', number: 97 },
+      null,
+      { status: 'D', number: 98 },
+      { status: 'D', number: 99 },
+      null,
+      { status: 'D', number: 100 },
+      null,
+      { status: 'D', number: 101 },
+      { status: 'D', number: 102 },
+      null,
+      { status: 'D', number: 103 },
+      
+    ]
   ];
   
   const layout2 = [
@@ -836,7 +851,7 @@ const layout1 = [
   ];
 
   const layouts = {
-    familia: layout4,
+    familia: layout1,
     individual: layout2,
   };
   
