@@ -116,9 +116,9 @@ const FinalPage = (props) => {
             {props.status === 3 && (
           <Button
               component={Link}
-              variant="contained"
-              color="primary"
+              variant="outlined"
               target="_blank"
+              color="primary"
               href={`https://api.whatsapp.com/send?text=Reservei lugares no Culto IBCL: ${
                 evento && evento.nome
               }. As cadeiras reservadas foram as: ${props.lugaresSelecionados.map(
