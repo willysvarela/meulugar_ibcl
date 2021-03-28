@@ -15,7 +15,7 @@ import { formatDateTime } from '../../services/utils';
 
 import { TIPO_EVENTO, COLOR_DEPT } from './../../config/constants';
 
-const activated = false;
+const activated = true;
 
 const EventsPage = () => {
   const [eventos, setEventos] = useState([]);
