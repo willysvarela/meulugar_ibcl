@@ -851,7 +851,7 @@ const layout1 = [
   ];
 
   const layouts = {
-    familia: layout1,
+    familia: layout4,
     individual: layout2,
   };
   
