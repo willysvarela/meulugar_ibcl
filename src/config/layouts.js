@@ -851,7 +851,7 @@ const layout4 = [
 ];
 
 
-const layout_204 = [
+const layout_230 = [
   [
     { status: 'D', number: 1 },
     { status: 'D', number: 2 },
@@ -1145,11 +1145,53 @@ const layout_204 = [
     null,
     { status: 'D', number: 203 },
     { status: 'D', number: 204 },
+  ],
+  [
+    null,
+    null,
+    null,
+    { status: 'D', number: 205 },
+    { status: 'D', number: 206 },
+    { status: 'D', number: 207 },
+    { status: 'D', number: 208 },
+    null,
+    { status: 'D', number: 209 },
+    { status: 'D', number: 210 },
+    { status: 'D', number: 211 },
+    null,
+    { status: 'D', number: 212 },
+    { status: 'D', number: 213 },
+    { status: 'D', number: 214 },
+    { status: 'D', number: 215 },
+    null,
+    { status: 'D', number: 216 },
+    { status: 'D', number: 217 },
+  ],
+  [
+    null,
+    null,
+    null,
+    { status: 'D', number: 218 },
+    { status: 'D', number: 219 },
+    { status: 'D', number: 220 },
+    { status: 'D', number: 221 },
+    null,
+    { status: 'D', number: 222 },
+    { status: 'D', number: 223 },
+    { status: 'D', number: 224 },
+    null,
+    { status: 'D', number: 225 },
+    { status: 'D', number: 226 },
+    { status: 'D', number: 227 },
+    { status: 'D', number: 228 },
+    null,
+    { status: 'D', number: 229 },
+    { status: 'D', number: 230 },
   ]
 ];
 
 const layouts = {
-  familia: layout_204,
+  familia: layout_230,
   individual: layout2,
 };
 
