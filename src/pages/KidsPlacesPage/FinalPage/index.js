@@ -121,7 +121,7 @@ const FinalPage = (props) => {
               target="_blank"
               href={`https://api.whatsapp.com/send?text=Reservei lugares para as pessoas no evento: ${
                 evento && evento.nome
-              }. As crianças são: ${props.names.map(
+              }. As pessoas são: ${props.names.map(
                 (name) => `${name} `
               )} `}
             >
